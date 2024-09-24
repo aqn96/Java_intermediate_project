@@ -13,7 +13,13 @@ public class G {
         g.setColor(Color.WHITE);
         g.fillRect(0,0,5000,5000);
     }
-    //------------------
+    public static G.V LEFT = new G.V(-1,0);
+    public static G.V RIGHT = new G.V(1,0);
+    public static G.V UP = new G.V(0,-1);
+    public static G.V DOWN = new G.V(0,1);
+
+
+    //------------------------------------------------------------------------------------------------------------
     public static void spline(Graphics g, int ax, int ay, int bx, int by, int cx, int cy, int n){
         if (n == 0){g.drawLine(ax,ay,cx,cy);return;}
         int abx = (ax+bx)/2, aby = (ay+by)/2;
@@ -28,6 +34,7 @@ public class G {
         public int x,y;
         public V(int x, int y){this.set(x,y);}
         public void set(int x, int y){this.x=x; this.y=y;}
+        public void set(V v){this.x=v.x; this.y=v.y;}
         public void add(V v){x+=v.x; y+=v.y;}
 
     }
