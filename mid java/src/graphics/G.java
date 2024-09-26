@@ -33,6 +33,7 @@ public class G {
     public static class V{
         public int x,y;
         public V(int x, int y){this.set(x,y);}
+        public V(V v){this.set(v);}
         public void set(int x, int y){this.x=x; this.y=y;}
         public void set(V v){this.x=v.x; this.y=v.y;}
         public void add(V v){x+=v.x; y+=v.y;}
@@ -55,14 +56,46 @@ public class G {
         public int yH(){return loc.y+size.y;}
     }
     //-----------------------------------HiLo--------------------------------------
-
-    public static class HiLo{}
+    public static class Lohi{
+        public int lo, hi;
+        public Lohi(int lo, int hi){this.lo = lo; this. hi = hi;}
+        public void set(int v){lo = v; hi = v;}
+        public void add(int v){
+            if(v < lo){lo = v;}
+            if(v > hi){hi = v;}
+        }
+        public int size(){return ((hi-lo) > 0)? hi-lo: 1;}
+    }
     //-----------------------------------BBox--------------------------------------
-
-    public static class BBox{}
+    // Bounding Box
+    public static class BBox{
+        public Lohi h, v; // horizontal, vertical
+        public BBox(){h = new Lohi(0,0); v = new Lohi(0,0);}
+        public void set(int x, int y){h.set(x); v.set(y);}
+        public void add(int x, int y){h.add(x); v.add(y);}
+        public void add(V v){add(v.x,v.y);}
+        public VS getNewVs(){return new VS(h.lo, v.lo, h.size(), v.size());}
+        public void draw(Graphics g){g.drawRect(h.lo, v.lo, h.size(), v.size());}
+    }
     //-----------------------------------PL----------------------------------------
 
-    public static class PL{}
+    public static class PL{
+        // Poly line multiple points
+        public V[] points;
+        public PL(int count){
+            points = new V[count];
+            for(int i=0; i<count; i++){points[i] = new V(0, 0);}
+        }
+        public int size(){return points.length;}
+
+        // subset of lines point (standardized the point number)
+        public void drawN(Graphics g, int n){
+            for(int i = 1; i<n; i++){
+                g.drawLine(points[i-1].x,points[i-1].y,points[i].x,points[i].y);}
+        }
+        public void draw(Graphics g){drawN(g,points.length);}
+
+    }
 
 
 }
