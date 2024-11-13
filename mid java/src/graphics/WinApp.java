@@ -25,56 +25,56 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 
 public class WinApp extends JPanel
-        implements MouseListener, MouseMotionListener, KeyListener{
-    public static JFrame FRAME;
-    public static WinApp PANEL; // JPanel that is also a lisener
-    public static String TITLE = "No Name";
-    public static Dimension PREF_SIZE = new Dimension(500,400);
+    implements MouseListener, MouseMotionListener, KeyListener{
+  public static JFrame FRAME;
+  public static WinApp PANEL; // JPanel that is also a lisener
+  public static String TITLE = "No Name";
+  public static Dimension PREF_SIZE = new Dimension(500,400);
 
-    public WinApp(String t, int w, int h){
-        TITLE = t; PREF_SIZE = new Dimension(w,h);
-    }
+  public WinApp(String t, int w, int h){
+    TITLE = t; PREF_SIZE = new Dimension(w,h);
+  }
 
-    public Dimension getPreferredSize() {return PREF_SIZE;}
+  public Dimension getPreferredSize() {return PREF_SIZE;}
 
-    private static void createAndShowGUI(){
-        FRAME = new JFrame(TITLE);
-        FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        FRAME.addKeyListener(PANEL); // keyListener added to frame
-        FRAME.getContentPane().add(PANEL);
-        FRAME.pack();
-        FRAME.setVisible(true);
-    }
-    public static void launch(){
-        // add in the listeners first
-        PANEL.addMouseListener(PANEL); // mouseListeners added to panel
-        PANEL.addMouseMotionListener(PANEL);
+  private static void createAndShowGUI(){
+    FRAME = new JFrame(TITLE);
+    FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    FRAME.addKeyListener(PANEL); // keyListener added to frame
+    FRAME.getContentPane().add(PANEL);
+    FRAME.pack();
+    FRAME.setVisible(true);
+  }
+  public static void launch(){
+    // add in the listeners first
+    PANEL.addMouseListener(PANEL); // mouseListeners added to panel
+    PANEL.addMouseMotionListener(PANEL);
 
-        javax.swing.SwingUtilities.invokeLater(
-                new Runnable(){ public void run(){createAndShowGUI();} }
-        );
-    }
+    javax.swing.SwingUtilities.invokeLater(
+        new Runnable(){ public void run(){createAndShowGUI();} }
+    );
+  }
 
-    @Override
-    public void mouseClicked(MouseEvent me){}
-    @Override
-    public void mousePressed(MouseEvent me) {}
-    @Override
-    public void mouseReleased(MouseEvent me) {}
+  @Override
+  public void mouseClicked(MouseEvent me){}
+  @Override
+  public void mousePressed(MouseEvent me) {}
+  @Override
+  public void mouseReleased(MouseEvent me) {}
 
-    @Override
-    public void mouseEntered(MouseEvent me) {}
-    @Override
-    public void mouseExited(MouseEvent me) {}
-    @Override
-    public void mouseDragged(MouseEvent me) {}
-    @Override
-    public void mouseMoved(MouseEvent me) {}
+  @Override
+  public void mouseEntered(MouseEvent me) {}
+  @Override
+  public void mouseExited(MouseEvent me) {}
+  @Override
+  public void mouseDragged(MouseEvent me) {}
+  @Override
+  public void mouseMoved(MouseEvent me) {}
 
-    @Override
-    public void keyTyped(KeyEvent ke) {}
-    @Override
-    public void keyPressed(KeyEvent ke) {}
-    @Override
-    public void keyReleased(KeyEvent ke) {}
+  @Override
+  public void keyTyped(KeyEvent ke) {}
+  @Override
+  public void keyPressed(KeyEvent ke) {}
+  @Override
+  public void keyReleased(KeyEvent ke) {}
 }
